@@ -1,0 +1,22 @@
+.contact-form {
+    color: #666;
+    font-family: inherit!important;
+    font-size: inherit!important;
+    font-weight: bold!important;
+}
+
+.contact-button {
+    color: #f8f9fa;
+    border-color: #777!important;
+    background-color: #777!important;
+}
+
+.return-button {
+    /* margin-left: 40px; */
+}
+
+/* 
+.form-control:focus {
+    border-color: #ddeaf7;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(189, 216, 216, 0.63);
+  } */

@@ -1,0 +1,157 @@
+.square {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  border-radius: 3px;
+}
+
+div.background-photos {
+  right: 0 !important;
+  left: 0 !important;
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+  background-repeat: no-repeat !important;
+  background-size: auto 100% !important;
+  background-position: 0 0 !important;
+  -webkit-transition: ease 0.3s !important;
+  -moz-transition: ease 0.3s !important;
+  -ms-transition: ease 0.3s !important;
+  -o-transition: ease 0.3s !important;
+  transition: ease 0.3s !important;
+  z-index: 2 !important;
+}
+
+div.overlay {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  background: rgba(207, 218, 218, 0.55);
+}
+
+div.overlay:hover,
+div.overlay:focus {
+  opacity: 1;
+}
+
+h3.title {
+  color: #fff;
+  font-weight: bold;
+}
+
+h4.description {
+  color: #fff;
+  font-weight: bold;
+}
+
+img.photos {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 150%;
+  min-height: 150px;
+  height: 100%;
+  width: auto;
+  min-width: 300px;
+}
+
+img.photos:hover,
+img.photos:focus {
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #ccc;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #666;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 25px;
+  height: 150px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.modal-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 25px;
+  height: 150px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.modal-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 25px;
+  height: 150px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.modal-content {
+  margin: auto !important;
+  display: block !important;
+  width: 80% !important;
+  height: 80%;
+  max-width: 1000px !important;
+  /* right: 0 !important;
+    left: 0 !important;
+    position: absolute !important;
+    cursor: pointer !important; */
+  background-repeat: no-repeat !important;
+  background-size: auto 100% !important;
+  background-position: 0 0 !important;
+  -webkit-transition: ease 0.3s !important;
+  -moz-transition: ease 0.3s !important;
+  -ms-transition: ease 0.3s !important;
+  -o-transition: ease 0.3s !important;
+  transition: ease 0.3s !important;
+}

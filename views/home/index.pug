@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    div.container
+        each line in photographs
+            div.row
+                each photograph in line
+                    div(class='col-sm')
+                        include image.pug
+        script(src='/javascripts/portfolio.js')
+
+

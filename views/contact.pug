@@ -1,0 +1,27 @@
+//- TODO: flex-row in the email message!
+//- TODO: decide the best route!
+
+extends layout
+
+block content
+    - const formDisplay = newForm ? 'block' : 'none';
+    - const messageDisplay = newForm ? 'none' : 'block';
+    div.container
+        form(class="contact-form" method="post" action="/email" style=`display: ${formDisplay}!important`)
+            div(class="form-group")
+                label(for="inputName") Nome
+                input(type="text" class="form-control" id="inputName" placeholder="")
+            div(class="form-group")
+                label(for="inputEmail") Email
+                input(type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="")
+            div(class="form-group")
+                label(for="inputEmailSubject") Assunto
+                input(type="text" class="form-control" id="inputEmailSubject" placeholder="")
+            div(class="form-group")
+                label(for="textareaMessage") Mensagem
+                textarea(type="email" class="form-control" id="textareaMessage" rows="6" placeholder="")
+            button(type="submit" class="contact-button btn btn-primary") Enviar
+    div.container
+        div(class="contact-form d-flex flex-row" style=`display: ${messageDisplay}!important`)
+            h3 Recebi a mensagem, já já te respondo!
+            a(href="/contato" class="return-button contact-button btn btn-primary btn-lg" role="button" aria-pressed="true") Voltar

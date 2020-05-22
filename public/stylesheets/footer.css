@@ -1,0 +1,23 @@
+.section-footer {
+    color: #777;
+    height: 100%;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+a.social>i {
+    color: #666;
+}
+
+.ul-footer {
+    margin-bottom: 0px!important;
+}
+
+.copyright-footer {
+    color: #f8f9fa;
+    background-color: #777;
+}
+
+.copyright-footer-row {
+    margin: 0!important;
+}

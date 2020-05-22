@@ -1,0 +1,18 @@
+nav(class="navbar navbar-expand-lg navbar-light bg-light")
+    a(class="navbar-brand nav-a-brand d-flex flex-column align-items-center ml-4")
+        h5 Glorinha Castor
+        h6 Fotografia
+    button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+        span(class="navbar-toggler-icon")
+    
+    div(class="collapse navbar-collapse" id="navbar-SupportedContent")
+        ul(class="navbar-nav ml-auto")
+            li(class={"nav-item": true, "active": currentUrl === "/"})
+                a(class="nav-link" href="/") Home
+                    span(class="sr-only") (current)
+            li(class={"nav-item": true, "active": currentUrl === "/galeria"})
+                a(class="nav-link" href="/galeria") Galeria
+            li(class={"nav-item": true, "active": currentUrl === "/bio"})
+                a(class="nav-link" href="/bio") Bio
+            li(class={"nav-item": true, "active": currentUrl === "/contato"})
+                a(class="nav-link" href="/contato") Contato

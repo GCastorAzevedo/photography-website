@@ -1,0 +1,30 @@
+.section-navbar {
+    color: #777;
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.nav-a-brand>h5 {
+    color: #666;
+    margin: 0;
+    margin-bottom: 2px;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.nav-a-brand>h6 {
+    color: #626262;
+    margin: 0;
+    margin-top: 2px;
+    line-height: 1;
+    font-weight: bold;
+}
+
+/* .active a { color:inherit!important; }
+  .navbar-nav > .active > a,
+  .navbar-nav > .active > a:hover,
+  .navbar-nav > .active > a:focus {
+  color: inherit;
+  background-color: transparent;
+  } */
