@@ -7,6 +7,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "public", "dist"),
     filename: "bundle.js",
+    library: "utils",
+    libraryTarget: "umd",
+    // libraryTarget: "var",
+    // library: "EntryPoint",
   },
   module: {
     rules: [
