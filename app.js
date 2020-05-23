@@ -22,6 +22,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+// app.use('/static', express.static('public'));
+// app.use('/css', express.static('css'));
+// app.use('/js', express.static('js'));
+// app.use('/files', express.static('files'));
+// app.use('/images', express.static('images'));
 
 app.use("/", homeRouter);
 app.use("/bio", bioRouter);
