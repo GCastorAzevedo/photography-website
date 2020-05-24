@@ -2,11 +2,10 @@ extends ../layout
 
 block content
     div.container
-        each line in photographs
-            div.row
-                each photograph in line
-                    div(class='col-sm')
-                        include image.pug
+        div(class="pictures d-flex justify-content-around flex-wrap")
+            each photograph in photographs
+                div(class='m-3')
+                    include image.pug
         //- TODO: expose this globally through webpack
         script(src='/javascripts/portfolio.js')
 

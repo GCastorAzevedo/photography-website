@@ -7,7 +7,6 @@ function zoomOut(photograph) {
 }
 
 function showOverlay(photograph) {
-  alert("aaa");
   document.getElementById(`overlay-${photograph}`).style.opacity = 0.75;
 }
 

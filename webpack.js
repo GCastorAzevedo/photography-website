@@ -1,5 +1,7 @@
 const path = require("path");
 
+// TODO: load styles first on header
+
 module.exports = {
   mode: "development",
   devtool: "source-map",

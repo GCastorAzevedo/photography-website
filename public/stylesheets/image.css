@@ -25,12 +25,117 @@ float: left;
 }
 */
 
-.square {
+div.square {
   position: relative;
   overflow: hidden;
   height: 100%;
+  min-height: 300px;
+  min-width: 300px;
   border-radius: 3px;
 }
+
+div.pictures {
+  min-height: 400px;
+}
+
+@media (min-width: 420px) {
+  div.pictures {
+    min-height: 420px;
+  }
+  div.square {
+    min-height: 420px;
+    min-width: 420px;
+  }
+}
+
+@media (min-width: 576px) {
+  div.pictures {
+    min-height: 500px;
+  }
+
+  div.square {
+    min-height: 500px;
+    min-width: 500px;
+  }
+}
+
+@media (min-width: 768px) {
+  div.pictures {
+    min-height: 500px;
+  }
+
+  div.square {
+    min-height: 500px;
+    min-width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  div.pictures {
+    min-height: 400px;
+  }
+
+  div.square {
+    min-height: 400px;
+    min-width: 400px;
+  }
+}
+
+@media (min-width: 1200px) {
+  div.pictures {
+    min-height: 300px;
+  }
+
+  div.square {
+    min-height: 300px;
+    min-width: 300px;
+  }
+}
+
+@media (min-width: 1500px) {
+  div.pictures {
+    min-height: 330px;
+  }
+
+  div.square {
+    min-height: 330px;
+    min-width: 330px;
+  }
+}
+
+/*
+@media only screen and (max-width: 1200px) {
+  div.pictures {
+    min-height: 400px;
+  }
+
+  div.square {
+    min-height: 400px;
+    min-width: 400px;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  div.pictures {
+    min-height: 490px;
+  }
+
+  div.square {
+    min-height: 490px;
+    min-width: 490px;
+  }
+}
+
+@media only screen and (max-width: 808px) {
+  div.pictures {
+    min-height: 600px;
+  }
+
+  div.square {
+    min-height: 600px;
+    min-width: 600px;
+  }
+}*/
 
 div.background-photos {
   right: 0 !important;
@@ -93,7 +198,7 @@ img.photos:focus {
   opacity: 0.75;
 }
 
-.modal {
+div.modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -108,7 +213,7 @@ img.photos:focus {
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-.modal-close {
+div.modal-close {
   position: absolute;
   top: 15px;
   right: 35px;
@@ -118,14 +223,14 @@ img.photos:focus {
   transition: 0.3s;
 }
 
-.modal-close:hover,
-.modal-close:focus {
+div.modal-close:hover,
+div.modal-close:focus {
   color: #666;
   text-decoration: none;
   cursor: pointer;
 }
 
-.modal-caption {
+div.modal-caption {
   margin: auto;
   display: block;
   width: 80%;
@@ -138,7 +243,7 @@ img.photos:focus {
   font-weight: bold;
 }
 
-.modal-caption {
+div.modal-caption {
   margin: auto;
   display: block;
   width: 80%;
@@ -151,7 +256,7 @@ img.photos:focus {
   font-weight: bold;
 }
 
-.modal-caption {
+div.modal-caption {
   margin: auto;
   display: block;
   width: 80%;
@@ -164,7 +269,7 @@ img.photos:focus {
   font-weight: bold;
 }
 
-.modal-content {
+div.modal-content {
   margin: auto !important;
   display: block !important;
   width: 80% !important;
