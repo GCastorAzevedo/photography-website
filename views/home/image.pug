@@ -1,7 +1,13 @@
 - const imgPath = `/images/portfolio/${photograph}`
 - const title = `título`
+//- TODO: investigate if a flow paradigm is suitable
+//- TODO: insert mock colored squares to fill in the gaps on a flow left line
+//- TODO: standardize photos in two classes - landscape X portrait
+//- TODO: move from background to div>img checkout flickr: https://blog.flickr.net/en
+//- ref: https://stackoverflow.com/questions/10830735/center-image-in-div-with-overflow-hidden
 div.square
-    div(class='background-photos', style=`background: url(${imgPath})`, onclick=`zoomIn("${photograph}")`, id=`img-${photograph}`)
+    //- TODO: change from background to div>img with overflow conditioned photo size
+    div(class='background-photos', style=`background: url(${imgPath}); background-position: 50% 50% !important`, onclick=`zoomIn("${photograph}")`, id=`img-${photograph}`)
         div(class="overlay d-flex flex-column align-items-center justify-content-center")
             span(class="align-self-center")
                 h3.title= title
@@ -11,5 +17,5 @@ div.square
 div(class='modal' id=`modal-${photograph}`)
     span(class='modal-close', onclick=`zoomOut("${photograph}")`) &times
     //- img(class='modal-content', src=imgPath, id=`${photograph}`)
-    div(class='modal-content', style=`background: url(${imgPath})`, id=`${photograph}`)
+    div(class='modal-content', style=`background: url(${imgPath}); background-position: 50% 50% !important`, id=`${photograph}`)
     div(class='modal-caption') descrição
