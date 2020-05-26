@@ -4,7 +4,7 @@ block content
     div.container
         div(class="pictures d-flex justify-content-around flex-wrap")
             each photograph in photographs
-                div(class='m-3')
+                div(class='photo m-3')
                     include image.pug
         //- TODO: expose this globally through webpack
         script(src='/javascripts/portfolio.js')

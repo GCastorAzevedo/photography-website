@@ -1,0 +1,29 @@
+{
+  "photos": [
+    {
+      "filename": "photo_1.jpeg",
+      "title": "",
+      "description": ""
+    },
+    {
+      "filename": "photo_2.jpeg",
+      "title": "",
+      "description": ""
+    },
+    {
+      "filename": "photo_3.jpeg",
+      "title": "",
+      "description": ""
+    },
+    {
+      "filename": "photo_4.jpeg",
+      "title": "",
+      "description": ""
+    },
+    {
+      "filename": "photo_5.jpeg",
+      "title": "",
+      "description": ""
+    }
+  ]
+}

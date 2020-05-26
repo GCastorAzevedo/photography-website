@@ -10,12 +10,13 @@ div.square
     div(class='background-photos', style=`background: url(${imgPath}); background-position: 50% 50% !important`, onclick=`zoomIn("${photograph}")`, id=`img-${photograph}`)
         div(class="overlay d-flex flex-column align-items-center justify-content-center")
             span(class="align-self-center")
-                h3.title= title
+                h3.title title
             span(class="align-self-center")
                 h4.description= photograph
 
 div(class='modal' id=`modal-${photograph}`)
     span(class='modal-close', onclick=`zoomOut("${photograph}")`) &times
     //- img(class='modal-content', src=imgPath, id=`${photograph}`)
+    //- TODO: move from background to div>img overflow: hidden, add :hover cursor: pointer
     div(class='modal-content', style=`background: url(${imgPath}); background-position: 50% 50% !important`, id=`${photograph}`)
     div(class='modal-caption') descrição

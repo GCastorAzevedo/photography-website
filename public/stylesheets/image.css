@@ -103,40 +103,6 @@ div.pictures {
   }
 }
 
-/*
-@media only screen and (max-width: 1200px) {
-  div.pictures {
-    min-height: 400px;
-  }
-
-  div.square {
-    min-height: 400px;
-    min-width: 400px;
-  }
-}
-
-@media only screen and (max-width: 990px) {
-  div.pictures {
-    min-height: 490px;
-  }
-
-  div.square {
-    min-height: 490px;
-    min-width: 490px;
-  }
-}
-
-@media only screen and (max-width: 808px) {
-  div.pictures {
-    min-height: 600px;
-  }
-
-  div.square {
-    min-height: 600px;
-    min-width: 600px;
-  }
-}*/
-
 div.background-photos {
   right: 0 !important;
   left: 0 !important;
@@ -201,7 +167,7 @@ img.photos:focus {
 div.modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 1000 !important;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -209,11 +175,10 @@ div.modal {
   height: 100%;
   overflow: auto;
   background-position: 50% 50% !important;
-  background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-div.modal-close {
+span.modal-close {
   position: absolute;
   top: 15px;
   right: 35px;
@@ -223,37 +188,11 @@ div.modal-close {
   transition: 0.3s;
 }
 
-div.modal-close:hover,
-div.modal-close:focus {
+span.modal-close:hover,
+span.modal-close:focus {
   color: #666;
   text-decoration: none;
   cursor: pointer;
-}
-
-div.modal-caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 25px;
-  height: 150px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-div.modal-caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 25px;
-  height: 150px;
-  font-size: 16px;
-  font-weight: bold;
 }
 
 div.modal-caption {
