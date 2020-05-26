@@ -6,13 +6,15 @@
   "scripts": {
     "start": "node ./bin/www",
     "start:dev": "nodemon ./bin/www --delay 1500ms --ext=js,mjs,json,pug,css",
-    "build": "webpack --config webpack.js"
+    "build": "webpack --config webpack.js",
+    "build-docker": "npm run build && docker build -t photography-website ."
   },
   "author": "Gabriel Castor",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "express": "^4.17.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
