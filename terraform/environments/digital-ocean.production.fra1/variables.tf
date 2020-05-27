@@ -7,6 +7,8 @@ variable "pvt_key" {}
 variable "ssh_fingerprint" {}
 
 variable "region" {
-  default = "ny3"
+  default = "fra1"
 }
+
+variable "root_password" {}
 
