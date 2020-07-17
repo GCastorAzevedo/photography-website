@@ -5,6 +5,7 @@ export TF_VAR_ssh_fingerprint=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | awk '{
 export DO_SSH_FINGERPRINT=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | awk '{print $2}' | sed 's/MD5://' )
 
 terraform apply -auto-approve \
+  -var "domain_url=${DOMAIN}" \
   -var "do_token=${DO_TOKEN}" \
   -var "pub_key=${HOME}/.ssh/id_rsa.pub" \
   -var "pvt_key=${HOME}/.ssh/id_rsa" \

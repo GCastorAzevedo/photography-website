@@ -24,6 +24,7 @@ resource "digitalocean_droplet" "photography_website" {
     private_key = "${file(var.pvt_key)}"
     timeout     = "2m"
   }
+
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
@@ -31,6 +32,18 @@ resource "digitalocean_droplet" "photography_website" {
       "sudo apt-get -y install nginx"
     ]
   }
+}
+
+resource "digitalocean_domain" "photography_website" {
+  name       = "${var.domain_url}"
+  ip_address = "${digitalocean_droplet.photography_website.ipv4_address}"
+}
+
+resource "digitalocean_record" "CNAME-www" {
+  domain = digitalocean_domain.default.name
+  type = "CNAME"
+  name = "www"
+  value = "@"
 }
 
 output "public_ip_server" {
