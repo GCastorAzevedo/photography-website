@@ -1,14 +1,23 @@
-# https://www.digitalocean.com/community/tutorials/how-to-use-terraform-with-digitalocean
+terraform {
+  backend "s3" {
+    bucket = "photo-web"
+    key = "terraform/terraform.tfstate"
+    region = "us-east-1"
+    endpoint = "https://ams3.digitaloceanspaces.com"
+    skip_credentials_validation = true
+    skip_metadata_api_check = true
+  }
+}
 
 provider "digitalocean" {
-  token = "${var.do_token}"
+  version = "~> 1.20"
+  token = var.do_token
 }
 
 resource "digitalocean_droplet" "photography_website" {
   image  = "ubuntu-18-04-x64"
   name   = "photo-web"
-  region = "${var.region}"
-  # count              = "1"
+  region = var.region
   size               = "s-1vcpu-1gb"
   tags               = ["production"]
   monitoring         = true
@@ -19,10 +28,14 @@ resource "digitalocean_droplet" "photography_website" {
   connection {
     host        = "${self.ipv4_address}"
     user        = "root"
-    password    = "${var.root_password}"
+    password    = var.root_password
     type        = "ssh"
-    private_key = "${file(var.pvt_key)}"
+    private_key = "${var.pvt_key != "" ? var.pvt_key : file(var.pvt_key_file)}"
     timeout     = "2m"
+  }
+
+  provisioner "remote-exec" {
+    inline = ["while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 5; done"]
   }
 
   provisioner "remote-exec" {
@@ -35,15 +48,15 @@ resource "digitalocean_droplet" "photography_website" {
 }
 
 resource "digitalocean_domain" "photography_website" {
-  name       = "${var.domain_url}"
+  name       = var.domain_url
   ip_address = "${digitalocean_droplet.photography_website.ipv4_address}"
 }
 
 resource "digitalocean_record" "CNAME-www" {
-  domain = digitalocean_domain.default.name
-  type = "CNAME"
-  name = "www"
-  value = "@"
+  domain = digitalocean_domain.photography_website.name
+  type   = "CNAME"
+  name   = "www"
+  value  = "@"
 }
 
 output "public_ip_server" {

@@ -1,0 +1,116 @@
+# TODO: deploy like https://testdriven.io/blog/deploying-django-to-digitalocean-with-docker-and-github-actions/
+name: Docker
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+
+env:
+  IMAGE_NAME: main_server
+
+jobs:
+  # Run tests.
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  docker-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          if [ -f docker-compose.test.yml ]; then
+            docker-compose --file docker-compose.test.yml build
+            docker-compose --file docker-compose.test.yml run sut
+          else
+            docker build . --file Dockerfile
+          fi
+
+  docker-push:
+    needs: docker-test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      - name: Push image
+        run: |
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          [ "$VERSION" == "master" ] && VERSION=latest
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+
+  terraform:
+    # deploy on digitalocean using terraform config
+    name: "Digital Ocean Terraform deploy"
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKDIR: terraform/environments/digital-ocean.production.fra1
+      TF_VAR_do_token: ${{ secrets.DO_TOKEN }}
+      TF_VAR_domain_url: ${{ secrets.DOMAIN }}
+      TF_VAR_root_password: ${{ secrets.DO_ROOT_PASSWORD }}
+      TF_VAR_ssh_fingerprint: ${{ secrets.DO_SSH_FINGERPRINT }}
+      TF_VAR_pvt_key: ${{ secrets.DO_SSH_SECRET_KEY }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.DO_TOKEN }}
+
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKDIR }}
+        run: terraform init
+          -backend-config="access_key=${{secrets.DO_SPACES_ACCESS_KEY}}"
+          -backend-config="secret_key=${{secrets.DO_SPACES_SECRET_KEY}}"
+
+      # - name: Terraform Format
+      #   working-directory: ${{ env.TF_WORKDIR }}
+      #   run: terraform fmt -check
+
+      - name: Terraform Plan
+        working-directory: ${{ env.TF_WORKDIR }}
+        run: echo $TF_VAR_do_token && terraform plan
+        # On push to master, build or change infrastructure according to Terraform configuration files
+        # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+      - name: Terraform Apply
+        working-directory: ${{ env.TF_WORKDIR }}
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        run: terraform apply -auto-approve
+    #
+    #
+    #
+    #
+    # docker-compose up with above main_server image, nginx, db, etc. follow: https://testdriven.io/blog/deploying-django-to-digitalocean-with-docker-and-github-actions/
+    # configure everything else if something is missing
+    #
+    # check also https://dev.to/kenessajr/deploy-a-react-app-to-digitalocean-using-github-actions-and-docker-4pln
+    # docker-compose:
+    # app:
+    #   image: github.pkg. ...
+    # web:
+    # image: nginx
+    # volumes:
+    # - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    # command: [nginx-debug, '-g', 'daemon off;']
