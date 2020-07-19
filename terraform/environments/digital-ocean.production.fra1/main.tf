@@ -26,7 +26,7 @@ resource "digitalocean_droplet" "photography_website" {
     "${var.ssh_fingerprint}"
   ]
   connection {
-    host        = "${self.ipv4_address}"
+    host        = self.ipv4_address
     user        = "root"
     password    = var.root_password
     type        = "ssh"
@@ -42,7 +42,12 @@ resource "digitalocean_droplet" "photography_website" {
     inline = [
       "export PATH=$PATH:/usr/bin",
       "sudo apt-get update",
-      "sudo apt-get -y install nginx"
+      "sudo apt-get -y install nginx",
+      "sudo systemctl stop nginx",
+      "apt install docker.io -y",
+      "docker login docker.pkg.github.com -u ${var.github_user} -p ${var.github_token}",
+      "docker pull ${var.docker_image_id}",
+      "docker run -dit -p 80:80 ${var.docker_image_id}"
     ]
   }
 }

@@ -19,3 +19,9 @@ variable "ssh_fingerprint" {}
 variable "root_password" {}
 
 variable "domain_url" {}
+
+variable "docker_image_id" {}
+
+variable "github_token" {}
+
+variable "github_user" {}
