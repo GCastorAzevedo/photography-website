@@ -2,13 +2,19 @@ variable "region" {
   default = "fra1"
 }
 
+variable "environment" {
+  default = "development"
+}
+
 variable "do_token" {}
 
 variable "pub_key" {
   default = ""
 }
 
-variable "pvt_key" {}
+variable "pvt_key" {
+  default = ""
+}
 
 variable "pvt_key_file" {
   default = ""

@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "photo-web"
-    key = "terraform/terraform.tfstate"
+    key = "terraform/prod/terraform.tfstate"
     region = "us-east-1"
     endpoint = "https://ams3.digitaloceanspaces.com"
     skip_credentials_validation = true
@@ -43,7 +43,9 @@ resource "digitalocean_droplet" "photography_website" {
       "export PATH=$PATH:/usr/bin",
       "sudo apt-get update",
       "sudo apt-get -y install nginx",
-      "sudo systemctl stop nginx",
+      # "echo ${file("../../../infra/nginx/nginx.conf")} > /etc/nginx/conf.d/nginx.conf",
+      # "echo ${file("../../../infra/nginx/nginx.html")} > /var/www/html/index.html",
+      "sudo systemctl restart nginx",
       "apt install docker.io -y",
       "docker login docker.pkg.github.com -u ${var.github_user} -p ${var.github_token}",
       "docker pull ${var.docker_image_id}",
