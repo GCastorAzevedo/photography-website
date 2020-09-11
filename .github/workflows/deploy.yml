@@ -132,12 +132,13 @@ jobs:
         env:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          HOST: root@$(terraform output public_ip_server) # ${{ secrets.USERNAME }}
+          HOST: root@$(terraform output public_ip_server)# ${{ secrets.USERNAME }}
           # PORT: ${{ secrets.PORT }}
-          KEY: ${{ secrets.DO_SSH_SECRET_KEY }}
+          # KEY: ${{ secrets.DO_SSH_SECRET_KEY }}
         with:
           source: "../../"
           target: "/opt/app"
+
     # https://github.com/marketplace/actions/scp-files
     # - name: Executing remote  command
     #   uses: appleboy/ssh-action@master

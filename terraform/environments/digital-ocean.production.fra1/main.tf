@@ -1,23 +1,23 @@
 terraform {
   backend "s3" {
-    bucket = "photo-web"
-    key = "terraform/prod/terraform.tfstate"
-    region = "us-east-1"
-    endpoint = "https://ams3.digitaloceanspaces.com"
+    bucket                      = "photo-web"
+    key                         = "terraform/prod/terraform.tfstate"
+    region                      = "us-east-1"
+    endpoint                    = "https://ams3.digitaloceanspaces.com"
     skip_credentials_validation = true
-    skip_metadata_api_check = true
+    skip_metadata_api_check     = true
   }
 }
 
 provider "digitalocean" {
   version = "~> 1.20"
-  token = var.do_token
+  token   = var.do_token
 }
 
 resource "digitalocean_droplet" "photography_website" {
-  image  = "ubuntu-18-04-x64"
-  name   = "photo-web"
-  region = var.region
+  image              = "ubuntu-18-04-x64"
+  name               = "photo-web"
+  region             = var.region
   size               = "s-1vcpu-1gb"
   tags               = ["production"]
   monitoring         = true
@@ -45,7 +45,7 @@ resource "digitalocean_droplet" "photography_website" {
       "sudo apt-get -y install nginx",
       # "echo ${file("../../../infra/nginx/nginx.conf")} > /etc/nginx/conf.d/nginx.conf",
       # "echo ${file("../../../infra/nginx/nginx.html")} > /var/www/html/index.html",
-      "sudo systemctl restart nginx",
+      # "sudo systemctl restart nginx",
       "apt install docker.io -y",
       "docker login docker.pkg.github.com -u ${var.github_user} -p ${var.github_token}",
       "docker pull ${var.docker_image_id}",
